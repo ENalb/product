@@ -49,43 +49,29 @@ void Product::purchase(User& u)
 {
 	ReceiptMethod preferredMethod = u.getReceiptMethod();
 
-    // Create the chain of responsibility for receipt sending
-    std::unique_ptr<IReceipSender> emailSender = std::make_unique<EmailReceiptSender>();
-    std::unique_ptr<IReceipSender> mailSender = std::make_unique<MailReceiptSender>();
-    std::unique_ptr<IReceipSender> notificationSender = std::make_unique<NotificationReceiptSender>();
-    std::unique_ptr<IReceipSender> smsSender = std::make_unique<SMSReceiptSender>();
+    	std::unique_ptr<IReceipSender> emailSender = std::make_unique<EmailReceiptSender>();
+    	std::unique_ptr<IReceipSender> mailSender = std::make_unique<MailReceiptSender>();
+    	std::unique_ptr<IReceipSender> notificationSender = std::make_unique<NotificationReceiptSender>();
+    	std::unique_ptr<IReceipSender> smsSender = std::make_unique<SMSReceiptSender>();
 
-    // Set the next sender in the chain of responsibility
-    emailSender->setNextSender(std::move(mailSender));
-    mailSender->setNextSender(std::move(notificationSender));
-    notificationSender->setNextSender(std::move(smsSender));
+	emailSender->setNextSender(std::move(mailSender));
+    	mailSender->setNextSender(std::move(notificationSender));
+    	notificationSender->setNextSender(std::move(smsSender));
 
-    // Send the receipt using the preferred method
-    switch (preferredMethod) {
-        case ReceiptMethod::Email:
-            emailSender->sendReceipt(&u);
-            break;
-        case ReceiptMethod::mail:
-            mailSender->sendReceipt(&u);
-            break;
-        case ReceiptMethod::notification:
-            notificationSender->sendReceipt(&u);
-            break;
-        case ReceiptMethod::SMS:
-            smsSender->sendReceipt(&u);
-            break;
-    }
-	// std::unique_ptr<IReceipSender> emailSender = std::make_unique<EmailReceiptSender>();
-    // std::unique_ptr<IReceipSender> mailSender = std::make_unique<MailReceiptSender>();
-    // std::unique_ptr<IReceipSender> notificationSender = std::make_unique<NotificationReceiptSender>();
-    // std::unique_ptr<IReceipSender> smsSender = std::make_unique<SMSReceiptSender>();
-    // emailSender->setNext(mailSender.get());
-    // mailSender->setNext(notificationSender.get());
-    // notificationSender->setNext(smsSender.get());
-
-    // // Call the first receipt sender in the chain
-    // emailSender->sendReceipt(&user);
-	// // u.sendReceipt(u);
+    	switch (preferredMethod) {
+       		case ReceiptMethod::Email:
+            		emailSender->sendReceipt(&u);
+            		break;
+        	case ReceiptMethod::mail:
+            		mailSender->sendReceipt(&u);
+            		break;
+        	case ReceiptMethod::notification:
+            		notificationSender->sendReceipt(&u);
+            		break;
+        	case ReceiptMethod::SMS:
+            		smsSender->sendReceipt(&u);
+            		break;
+    	}
 }
 
 Product::~Product() {}
