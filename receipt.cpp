@@ -8,7 +8,7 @@ void EmailReceiptSender::sendReceipt(User* u)
 }
 
 void EmailReceiptSender::setNextSender(std::unique_ptr<IReceipSender> next) {
-    nextSender = std::move(next);
+    	nextSender = std::move(next);
 }
 
 void MailReceiptSender::sendReceipt(User* u)
@@ -17,7 +17,7 @@ void MailReceiptSender::sendReceipt(User* u)
 }
 
 void MailReceiptSender::setNextSender(std::unique_ptr<IReceipSender> next) {
-    nextSender = std::move(next);
+    	nextSender = std::move(next);
 }
 
 void NotificationReceiptSender::sendReceipt(User* u)
@@ -26,7 +26,7 @@ void NotificationReceiptSender::sendReceipt(User* u)
 }
 
 void NotificationReceiptSender::setNextSender(std::unique_ptr<IReceipSender> next) {
-    nextSender = std::move(next);
+    	nextSender = std::move(next);
 }
 
 void SMSReceiptSender::sendReceipt(User* u)
@@ -35,41 +35,41 @@ void SMSReceiptSender::sendReceipt(User* u)
 }
 
 void SMSReceiptSender::setNextSender(std::unique_ptr<IReceipSender> next) {
-    nextSender = std::move(next);
+    	nextSender = std::move(next);
 }
 
 bool EmailReceiptHandler::handleRequest(User* u, IReceipSender*& i)
 {
 	if (u->getReceiptMethod() == ReceiptMethod::Email) {
-        i = new EmailReceiptSender();
-        return true;
-    }
-    return false;
+        	i = new EmailReceiptSender();
+        	return true;
+    	}
+    	return false;
 }
 
 bool MailReceiptHandler::handleRequest(User* u, IReceipSender*& i)
 {
 	if (u->getReceiptMethod() == ReceiptMethod::mail) {
-        i = new MailReceiptSender();
-        return true;
-    }
-    return false;
+        	i = new MailReceiptSender();
+        	return true;
+    	}
+    	return false;
 }
 
 bool NotificationReceiptHandler::handleRequest(User* u, IReceipSender*& i)
 {
 	if (u->getReceiptMethod() == ReceiptMethod::notification) {
-        i = new NotificationReceiptSender();
-        return true;
-    }
-    return false;
+        	i = new NotificationReceiptSender();
+        	return true;
+    	}
+    	return false;
 }
 
 bool SMSReceiptHandler::handleRequest(User* u, IReceipSender*& i)
 {
 	if (u->getReceiptMethod() == ReceiptMethod::SMS) {
-        i = new SMSReceiptSender();
-        return true;
-    }
-    return false;
+        	i = new SMSReceiptSender();
+        	return true;
+    	}
+    	return false;
 }
