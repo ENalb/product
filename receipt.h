@@ -14,7 +14,7 @@ public:
 	void sendReceipt(User*) override;
 	void setNextSender(std::unique_ptr<IReceipSender> next) override;
 private:
-    std::unique_ptr<IReceipSender> nextSender;
+    	std::unique_ptr<IReceipSender> nextSender;
 };
 
 class MailReceiptSender : public IReceipSender
@@ -23,7 +23,7 @@ public:
 	void sendReceipt(User*) override;
 	void setNextSender(std::unique_ptr<IReceipSender> next) override;
 private:
-    std::unique_ptr<IReceipSender> nextSender;
+    	std::unique_ptr<IReceipSender> nextSender;
 };
 
 class NotificationReceiptSender : public IReceipSender
@@ -32,7 +32,7 @@ public:
 	void sendReceipt(User*) override;
 	void setNextSender(std::unique_ptr<IReceipSender> next) override;
 private:
-    std::unique_ptr<IReceipSender> nextSender;
+    	std::unique_ptr<IReceipSender> nextSender;
 };
 
 class SMSReceiptSender : public IReceipSender
@@ -41,7 +41,7 @@ public:
 	void sendReceipt(User*) override;
 	void setNextSender(std::unique_ptr<IReceipSender> next) override;
 private:
-    std::unique_ptr<IReceipSender> nextSender;
+    	std::unique_ptr<IReceipSender> nextSender;
 };
 
 class ReceiptHandler
